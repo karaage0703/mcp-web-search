@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-web-search"
+version = "0.1.0"
+description = "Google Custom Search MCP Server"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "google-api-python-client>=2.0.0",
+]
+
+[project.scripts]
+mcp-web-search = "mcp_web_search.server:main"
