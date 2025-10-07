@@ -29,7 +29,29 @@ export GOOGLE_SEARCH_ENGINE_ID="your-search-engine-id-here"
 
 ### 3. MCP設定
 
-`.mcp.json` または `claude_desktop_config.json` に以下を追加:
+#### Claude Code を使用する場合
+
+コマンドで MCP サーバーを追加します（ユーザースコープ - すべてのプロジェクトで使用可能）：
+
+```bash
+claude mcp add google-search -s user \
+  -e GOOGLE_API_KEY=your-api-key-here \
+  -e GOOGLE_SEARCH_ENGINE_ID=your-search-engine-id-here \
+  -- uvx --from git+https://github.com/karaage0703/mcp-web-search.git mcp-web-search
+```
+
+プロジェクトスコープで追加する場合（プロジェクト単位）：
+
+```bash
+claude mcp add google-search -s project \
+  -e GOOGLE_API_KEY=your-api-key-here \
+  -e GOOGLE_SEARCH_ENGINE_ID=your-search-engine-id-here \
+  -- uvx --from git+https://github.com/karaage0703/mcp-web-search.git mcp-web-search
+```
+
+#### Claude Desktop を使用する場合
+
+`claude_desktop_config.json` に以下を追加:
 
 ```json
 {
