@@ -1,3 +1,9 @@
+"""
+Google Custom Search MCP Server
+
+Based on code from: https://github.com/suckgeun/book_code/blob/master/servers/src/server_google_search.py
+"""
+
 from mcp.server.fastmcp import FastMCP, Context
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -8,15 +14,18 @@ mcp = FastMCP("google_search_server")
 
 
 def parse_args():
-    """コマンドライン引数をパースして環境変数を設定"""
+    """コマンドライン引数をパースして環境変数を設定（オプション）"""
     parser = argparse.ArgumentParser(description="Google Custom Search MCP Server")
-    parser.add_argument("--api-key", required=True, help="Google API Key")
-    parser.add_argument("--cx-id", required=True, help="Google Search Engine ID")
+    parser.add_argument("--api-key", help="Google API Key (optional, can use GOOGLE_API_KEY env var)")
+    parser.add_argument("--cx-id", help="Google Search Engine ID (optional, can use GOOGLE_SEARCH_ENGINE_ID env var)")
 
     args, _ = parser.parse_known_args()
 
-    os.environ["GOOGLE_API_KEY"] = args.api_key
-    os.environ["GOOGLE_SEARCH_ENGINE_ID"] = args.cx_id
+    # コマンドライン引数が指定されていれば環境変数を上書き
+    if args.api_key:
+        os.environ["GOOGLE_API_KEY"] = args.api_key
+    if args.cx_id:
+        os.environ["GOOGLE_SEARCH_ENGINE_ID"] = args.cx_id
 
 
 @mcp.tool()

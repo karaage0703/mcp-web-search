@@ -6,6 +6,8 @@ build-backend = "hatchling.build"
 name = "mcp-web-search"
 version = "0.1.0"
 description = "Google Custom Search MCP Server"
+authors = [{name = "karaage", email = "karaage0703@gmail.com"}]
+license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -15,3 +17,6 @@ dependencies = [
 
 [project.scripts]
 mcp-web-search = "mcp_web_search.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["mcp_web_search"]
