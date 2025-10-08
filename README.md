@@ -49,6 +49,31 @@ claude mcp add google-search -s project \
   -- uvx --from git+https://github.com/karaage0703/mcp-web-search.git mcp-web-search
 ```
 
+#### mmcp を使用する場合
+
+[mmcp](https://github.com/koki-develop/mmcp) を使用して複数のAIエージェントにMCPサーバーを設定できます。
+
+MCPサーバーを追加:
+
+```bash
+mmcp add \
+  --env GOOGLE_API_KEY=your-api-key-here \
+  --env GOOGLE_SEARCH_ENGINE_ID=your-search-engine-id-here \
+  -- google-search uvx --from git+https://github.com/karaage0703/mcp-web-search.git mcp-web-search
+```
+
+使用するエージェントを指定（例: claude-code, codex-cli, gemini-cli, cursor など）:
+
+```bash
+mmcp agents add claude-code codex-cli gemini-cli
+```
+
+設定を適用:
+
+```bash
+mmcp apply
+```
+
 #### Claude Desktop を使用する場合
 
 `claude_desktop_config.json` に以下を追加:
